@@ -6,7 +6,9 @@ const routeApi = (app) => {
     app.get('/test', controller.test);
 
     // get all data from json
-    app.get('/all',controller.getAll);
+    app.get('/movies/all',controller.getAll);
+
+    app.get('/movie',controller.getMovie);
 };
 
 module.exports = routeApi;

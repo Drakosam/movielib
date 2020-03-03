@@ -6,8 +6,13 @@ class Controller {
     }
 
     getAll(req, res) {
-       const movie = new Movies();
+        const movie = new Movies();
         res.send(movie.all())
+    }
+
+    getMovie(req, res) {
+        const movie = new Movies();
+        res.send(movie.randomMovie());
     }
 
     postMovie(req, res) {
