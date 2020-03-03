@@ -1,0 +1,93 @@
+{
+  "category": [
+    "Family",
+    "Action",
+    "Fantasy",
+    "Romance",
+    "Sf"
+  ],
+  "movies": [
+    {
+      "title": "Ring",
+      "year": 1998,
+      "runtime": 95,
+      "director": "movie/ring",
+      "actors": "",
+      "plot": "",
+      "posterUrl": "a movie that will bring the whole family together",
+      "genres": [
+        0
+      ]
+    },
+    {
+      "title": "Kill Bill:Vol 1",
+      "year": 2003,
+      "runtime": 111,
+      "director": "movie/kill_bill_vol_1",
+      "actors": "",
+      "plot": "",
+      "posterUrl": "relax",
+      "genres": [
+        0,
+        1
+      ]
+    },
+    {
+      "title": "Spawn",
+      "year": 1997,
+      "runtime": 96,
+      "director": "movie/spawn",
+      "actors": "",
+      "plot": "",
+      "posterUrl": "relax",
+      "genres": [
+        0,
+        1,
+        2
+      ]
+    },
+    {
+      "title": "Titanic",
+      "year": 1997,
+      "runtime": 194,
+      "director": "movie/titanic",
+      "actors": "",
+      "plot": "",
+      "posterUrl": "bad",
+      "genres": [
+        0,
+        1,
+        2
+      ]
+    },
+    {
+      "title": "Batman",
+      "year": 1989,
+      "runtime": 126,
+      "director": "movie/batman",
+      "actors": "",
+      "plot": "",
+      "posterUrl": "im batman",
+      "genres": [
+        0,
+        1,
+        2
+      ]
+    },
+    {
+      "title": "The Thing",
+      "year": 1982,
+      "runtime": 109,
+      "director": "movie/the_thing",
+      "actors": "",
+      "plot": "",
+      "posterUrl": "Still a Better Love Story than Twilight",
+      "genres": [
+        0,
+        1,
+        3,
+        4
+      ]
+    }
+  ]
+}

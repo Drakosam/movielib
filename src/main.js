@@ -2,6 +2,7 @@ const express = require('express');
 const routeApi = require('./routesapi');
 
 const app = express();
+app.use(express.static('data'))
 
 routeApi(app);
 
