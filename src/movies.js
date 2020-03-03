@@ -39,10 +39,11 @@ class Movies {
         if (this.error) {
             return this.errorMsg;
         }
-        const {movies} = this.data;
-        const con = item => item['runtime'] > duration - 10 && item['runtime'] < duration + 10;
 
-        const tempData = movies.filter(con);
+        const {movies} = this.data;
+
+        const tempData = this._getMovieBetweenRuntime(movies, duration, alpha);
+
         if (!tempData.length) {
             return errorHelper.emptyTableForParameters()
         }
@@ -61,7 +62,9 @@ class Movies {
             return errorHelper.emptyTableForParameters()
         }
 
-        const moviesArray = this._getMovieMachGenderCodes(codeArray);
+        const {movies} = this.data;
+
+        const moviesArray = this._getMovieMachGenderCodes(movies, codeArray);
 
         if (!moviesArray.length) {
             return errorHelper.emptyTableForParameters()
@@ -70,21 +73,56 @@ class Movies {
         return {data: moviesArray.map(e => this._replaceCodeWithName(e)), code: 200}
     }
 
-    _getMovieMachGenderCodes(codeArray) {
+    movieMachGenderAndDuration(genders = [], duration, alpha = 10) {
+        if (this.error) {
+            return this.errorMsg;
+        }
+
         const {movies} = this.data;
-        return movies.filter(e => this._isSearchMovie(e, codeArray));
+
+        const codeArray = this._getGendersCode(genders);
+
+        if (!codeArray.length) {
+            return errorHelper.emptyTableForParameters()
+        }
+
+        const tempData = this._getMovieBetweenRuntime(movies, duration, alpha);
+
+        if (!tempData.length) {
+            return errorHelper.emptyTableForParameters()
+        }
+
+        const moviesArray = this._getMovieMachGenderCodes(tempData, codeArray);
+
+        if (!moviesArray.length) {
+            return errorHelper.emptyTableForParameters()
+        }
+
+        return {data: this._ratingMovie(moviesArray, codeArray).map(e => this._replaceCodeWithName(e)), code: 200}
+    }
+
+    _getMovieBetweenRuntime(movies, duration, alpha = 10) {
+        const con = item => item['runtime'] > duration - 10 && item['runtime'] < duration + 10;
+        return movies.filter(con);
+    }
+
+    _getMovieMachGenderCodes(movies, codeArray) {
+
+        return movies.filter(e => this._isSearchMovie(e, codeArray) > 0);
     }
 
     _isSearchMovie(movie, codeArray) {
+        let lvl = 0;
         const {genres} = movie;
         const searchMovie = e => codeArray.indexOf(e) > -1;
         for (const item of genres) {
             if (searchMovie(item)) {
-                return true;
+                console.log('xxx');
+                lvl++
             }
         }
 
-        return false;
+        return lvl;
     }
 
     _getGendersCode(genders) {
@@ -111,6 +149,10 @@ class Movies {
         const mapGenders = genres.map(e => category[e]);
         movie['genres'] = mapGenders;
         return movie
+    }
+
+    _ratingMovie(movies, genders) {
+        return movies.sort((a, b) => this._isSearchMovie(b, genders) - this._isSearchMovie(a, genders))
     }
 }
 

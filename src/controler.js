@@ -17,7 +17,7 @@ class Controller {
         const movie = new Movies();
 
         if (duration && genres) {
-            res.send('uuu');
+            res.send(movie.movieMachGenderAndDuration(JSON.parse(genres), duration));
         } else if (genres) {
             res.send(movie.movieMachGender(JSON.parse(genres)));
         } else if (duration) {
