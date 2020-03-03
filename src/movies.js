@@ -1,6 +1,6 @@
 const fs = require('fs');
 const path = require('path');
-const errorHelper = require("./errorhelper")
+const errorHelper = require("./errorhelper");
 
 
 class Movies {
@@ -22,8 +22,30 @@ class Movies {
             return errorHelper.emptyTable('movies')
         }
 
-        const randomPos = parseInt("" + Math.random() * this.data['movies'].length);
-        return {data:this.data['movies'][randomPos] , code: 200}
+        const {movies} = this.data;
+        return this._pickRandom(movies)
+    }
+
+    randomMovieBetweenRuntime(duration, alpha = 10) {
+        if (!this.data || !this.data['movies']) {
+            return errorHelper.noDB()
+        }
+        if (!this.data['movies'].length) {
+            return errorHelper.emptyTable('movies')
+        }
+        const {movies} = this.data;
+        const con = item => item['runtime'] > duration - 10 && item['runtime'] < duration + 10;
+
+        const tempData = movies.filter(con);
+        if(!tempData.length){
+            return errorHelper.emptyTableForParameters()
+        }
+        return this._pickRandom(tempData)
+    }
+
+    _pickRandom(pickList) {
+        const randomPos = parseInt("" + Math.random() * pickList.length);
+        return {data: pickList[randomPos], code: 200}
     }
 }
 

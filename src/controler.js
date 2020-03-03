@@ -11,8 +11,22 @@ class Controller {
     }
 
     getMovie(req, res) {
+        const duration = parseInt(req.query['duration']);
+        const genres = req.query['genres'];
+
         const movie = new Movies();
-        res.send(movie.randomMovie());
+
+        if (duration && genres) {
+            res.send('uuu');
+        } else if (genres) {
+            res.send('yyy');
+        } else if (duration) {
+            res.send(movie.randomMovieBetweenRuntime(duration));
+        } else {
+            res.send(movie.randomMovie());
+        }
+
+
     }
 
     postMovie(req, res) {

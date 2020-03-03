@@ -7,9 +7,15 @@ const ErrorHelper = () => {
         return {data: [], msg: `${tableName} is empty`, code: 200}
     };
 
+    const _emptyTableForParameters = () => {
+        return {data: [], msg: 'No matching data found for the given parameters', code: 200}
+    };
+
+
     return {
         noDB: _noDb,
-        emptyTable: _emptyTable
+        emptyTable: _emptyTable,
+        emptyTableForParameters:_emptyTableForParameters
     }
 };
 
