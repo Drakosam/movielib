@@ -19,14 +19,12 @@ class Controller {
         if (duration && genres) {
             res.send('uuu');
         } else if (genres) {
-            res.send('yyy');
+            res.send(movie.movieMachGender(JSON.parse(genres)));
         } else if (duration) {
             res.send(movie.randomMovieBetweenRuntime(duration));
         } else {
             res.send(movie.randomMovie());
         }
-
-
     }
 
     postMovie(req, res) {
