@@ -17,9 +17,9 @@ class Controller {
         const movie = new Movies();
 
         if (duration && genres) {
-            res.send(movie.movieMachGenderAndDuration(JSON.parse(genres), duration));
+            res.send(movie.movieMachGenresAndDuration(JSON.parse(genres), duration));
         } else if (genres) {
-            res.send(movie.movieMachGender(JSON.parse(genres)));
+            res.send(movie.movieMachGenres(JSON.parse(genres)));
         } else if (duration) {
             res.send(movie.randomMovieBetweenRuntime(duration));
         } else {
@@ -28,12 +28,12 @@ class Controller {
     }
 
     postMovie(req, res) {
+        const body = req.body;
+        const movie = new Movies();
 
+        res.send(movie.addToDB(body));
     }
 
-    postCategory(req, res) {
-
-    }
 }
 
 module.exports = Controller;

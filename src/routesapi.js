@@ -9,6 +9,8 @@ const routeApi = (app) => {
     app.get('/movies/all',controller.getAll);
 
     app.get('/movie',controller.getMovie);
+
+    app.post('/movie',controller.postMovie);
 };
 
 module.exports = routeApi;

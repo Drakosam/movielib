@@ -11,11 +11,16 @@ const ErrorHelper = () => {
         return {data: [], msg: 'No matching data found for the given parameters', code: 200}
     };
 
+    const _paramIsRequired = (name) => {
+        return {  msg: `field ${name} is required`, code: 400}
+    };
+
 
     return {
         noDB: _noDb,
         emptyTable: _emptyTable,
-        emptyTableForParameters:_emptyTableForParameters
+        emptyTableForParameters: _emptyTableForParameters,
+        paramIsRequired: _paramIsRequired
     }
 };
 

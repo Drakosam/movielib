@@ -5,7 +5,8 @@
   "main": "src/main.js",
   "scripts": {
     "start": "node src/main.js",
-    "dev": "nodemon src/main.js"
+    "dev": "nodemon src/main.js",
+    "test": "mocha"
   },
   "author": "daki",
   "license": "ISC",
@@ -13,6 +14,7 @@
     "express": "^4.17.1"
   },
   "devDependencies": {
+    "mocha": "^7.1.0",
     "nodemon": "^2.0.2"
   }
 }
